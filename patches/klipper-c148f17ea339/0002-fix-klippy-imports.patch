@@ -1,0 +1,221 @@
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Wed, 15 Sep 2021 12:08:13 +0200
+Subject: [PATCH] fix klippy imports
+
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ klippy/configfile.py  | 3 ++-
+ klippy/console.py     | 2 +-
+ klippy/klippy.py      | 4 ++--
+ klippy/mathutil.py    | 2 +-
+ klippy/mcu.py         | 2 +-
+ klippy/parsedump.py   | 2 +-
+ klippy/queuelogger.py | 2 +-
+ klippy/reactor.py     | 4 ++--
+ klippy/serialhdl.py   | 2 +-
+ klippy/stepper.py     | 2 +-
+ klippy/toolhead.py    | 7 ++++---
+ klippy/util.py        | 6 +++---
+ klippy/webhooks.py    | 2 +-
+ 13 files changed, 21 insertions(+), 19 deletions(-)
+
+diff --git a/klippy/configfile.py b/klippy/configfile.py
+index d4293af34f5c..4306554993bf 100644
+--- a/klippy/configfile.py
++++ b/klippy/configfile.py
+@@ -3,7 +3,8 @@
+ # Copyright (C) 2016-2021  Kevin O'Connor <kevin@koconnor.net>
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+-import os, glob, re, time, logging, ConfigParser as configparser, StringIO
++import os, glob, re, time, logging, configparser
++from io import StringIO
+ 
+ error = configparser.Error
+ 
+diff --git a/klippy/console.py b/klippy/console.py
+index a920014975e6..f977ea65d6ba 100755
+--- a/klippy/console.py
++++ b/klippy/console.py
+@@ -5,7 +5,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import sys, optparse, os, re, logging
+-import reactor, serialhdl, pins, util, msgproto, clocksync
++from klippy import reactor, serialhdl, pins, util, msgproto, clocksync
+ 
+ help_txt = """
+   This is a debugging console for the Klipper micro-controller.
+diff --git a/klippy/klippy.py b/klippy/klippy.py
+index 389a89406574..092bda7724f0 100644
+--- a/klippy/klippy.py
++++ b/klippy/klippy.py
+@@ -5,8 +5,8 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import sys, os, gc, optparse, logging, time, collections, importlib
+-import util, reactor, queuelogger, msgproto
+-import gcode, configfile, pins, mcu, toolhead, webhooks
++from klippy import util, reactor, queuelogger, msgproto
++from klippy import gcode, configfile, pins, mcu, toolhead, webhooks
+ 
+ message_ready = "Printer is ready"
+ 
+diff --git a/klippy/mathutil.py b/klippy/mathutil.py
+index a6ab50d224ed..4757da830063 100644
+--- a/klippy/mathutil.py
++++ b/klippy/mathutil.py
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging, multiprocessing, traceback
+-import queuelogger
++from klippy import queuelogger
+ 
+ 
+ ######################################################################
+diff --git a/klippy/mcu.py b/klippy/mcu.py
+index 6fb66247cf24..1d8cab3cad49 100644
+--- a/klippy/mcu.py
++++ b/klippy/mcu.py
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import sys, os, zlib, logging, math
+-import serialhdl, pins, chelper, clocksync
++from klippy import serialhdl, pins, chelper, clocksync
+ 
+ class error(Exception):
+     pass
+diff --git a/klippy/parsedump.py b/klippy/parsedump.py
+index 380446ebefb3..72e7e81ac53e 100755
+--- a/klippy/parsedump.py
++++ b/klippy/parsedump.py
+@@ -5,7 +5,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import os, sys, logging
+-import msgproto
++from klippy import msgproto
+ 
+ def read_dictionary(filename):
+     dfile = open(filename, 'rb')
+diff --git a/klippy/queuelogger.py b/klippy/queuelogger.py
+index 8fa98a6bdd53..c6447f8e55dc 100644
+--- a/klippy/queuelogger.py
++++ b/klippy/queuelogger.py
+@@ -3,7 +3,7 @@
+ # Copyright (C) 2016-2019  Kevin O'Connor <kevin@koconnor.net>
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+-import logging, logging.handlers, threading, Queue as queue, time
++import logging, logging.handlers, threading, queue, time
+ 
+ # Class to forward all messages through a queue to a background thread
+ class QueueHandler(logging.Handler):
+diff --git a/klippy/reactor.py b/klippy/reactor.py
+index 7e41176e8709..60b4781b4ef4 100644
+--- a/klippy/reactor.py
++++ b/klippy/reactor.py
+@@ -3,9 +3,9 @@
+ # Copyright (C) 2016-2020  Kevin O'Connor <kevin@koconnor.net>
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+-import os, gc, select, math, time, logging, Queue as queue
++import os, gc, select, math, time, logging, queue
+ import greenlet
+-import chelper, util
++from klippy import chelper, util
+ 
+ _NOW = 0.
+ _NEVER = 9999999999999999.
+diff --git a/klippy/serialhdl.py b/klippy/serialhdl.py
+index 9294b120b380..315e0d99625c 100644
+--- a/klippy/serialhdl.py
++++ b/klippy/serialhdl.py
+@@ -6,7 +6,7 @@
+ import logging, threading, os
+ import serial
+ 
+-import msgproto, chelper, util
++from klippy import msgproto, chelper, util
+ 
+ class error(Exception):
+     pass
+diff --git a/klippy/stepper.py b/klippy/stepper.py
+index 9b7263c1690e..2b0f5e0e3851 100644
+--- a/klippy/stepper.py
++++ b/klippy/stepper.py
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging, collections
+-import chelper
++from klippy import chelper
+ 
+ class error(Exception):
+     pass
+diff --git a/klippy/toolhead.py b/klippy/toolhead.py
+index ec243d9acfbd..2958f6c91001 100644
+--- a/klippy/toolhead.py
++++ b/klippy/toolhead.py
+@@ -4,7 +4,8 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging, importlib
+-import mcu, chelper, kinematics.extruder
++from klippy import mcu, chelper
++from klippy.kinematics import extruder
+ 
+ # Common suffixes: _d is distance (in mm), _v is velocity (in
+ #   mm/second), _v2 is velocity squared (mm^2/s^2), _t is time (in
+@@ -249,7 +250,7 @@ class ToolHead:
+         # Create kinematics class
+         gcode = self.printer.lookup_object('gcode')
+         self.Coord = gcode.Coord
+-        self.extruder = kinematics.extruder.DummyExtruder(self.printer)
++        self.extruder = extruder.DummyExtruder(self.printer)
+         kin_name = config.get('kinematics')
+         try:
+             mod = importlib.import_module('klippy.kinematics.' + kin_name)
+@@ -587,4 +588,4 @@ class ToolHead:
+ 
+ def add_printer_objects(config):
+     config.get_printer().add_object('toolhead', ToolHead(config))
+-    kinematics.extruder.add_printer_objects(config)
++    extruder.add_printer_objects(config)
+diff --git a/klippy/util.py b/klippy/util.py
+index 14009855a769..f34dd79dec1c 100644
+--- a/klippy/util.py
++++ b/klippy/util.py
+@@ -96,14 +96,14 @@ def dump_mcu_build():
+ 
+ def get_cpu_info():
+     try:
+-        f = open('/proc/cpuinfo', 'rb')
+-        data = f.read()
++        f = open('/proc/cpuinfo', 'r')
++        data = f.readlines()
+         f.close()
+     except (IOError, OSError) as e:
+         logging.debug("Exception on read /proc/cpuinfo: %s",
+                       traceback.format_exc())
+         return "?"
+-    lines = [l.split(':', 1) for l in data.split('\n')]
++    lines = [l.split(':', 1) for l in data]
+     lines = [(l[0].strip(), l[1].strip()) for l in lines if len(l) == 2]
+     core_count = [k for k, v in lines].count("processor")
+     model_name = dict(lines).get("model name", "?")
+diff --git a/klippy/webhooks.py b/klippy/webhooks.py
+index 2deed4296909..27b13c5ab7f8 100644
+--- a/klippy/webhooks.py
++++ b/klippy/webhooks.py
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license
+ import logging, socket, os, sys, errno, json
+-import gcode
++from klippy import gcode
+ 
+ # Json decodes strings as unicode types in Python 2.x.  This doesn't
+ # play well with some parts of Klipper (particuarly displays), so we

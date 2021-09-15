@@ -1,0 +1,14 @@
+## SECTION=python3
+
+config KLIPPER
+	tristate
+	select PYSERIAL3
+	select PYTHON3
+	select PYTHON3_CFFI
+	select PYTHON3_GREENLET
+	select PYTHON3_JINJA2
+	select PYTHON3_SETUPTOOLS
+	select PYTHON3_SSL
+	prompt "klipper"
+	help
+	  FIXME
