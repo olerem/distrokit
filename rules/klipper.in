@@ -9,6 +9,8 @@ config KLIPPER
 	select PYTHON3_JINJA2
 	select PYTHON3_SETUPTOOLS
 	select PYTHON3_SSL
+	select PYTHON3_PYCPARSER
+	select PYTHON3_SIX
 	prompt "klipper"
 	help
 	  FIXME
