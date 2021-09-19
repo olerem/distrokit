@@ -1,0 +1,8 @@
+## SECTION=python3
+
+config PYTHON3_OCTOPRINT
+	tristate
+	select PYTHON3
+	prompt "octoprint"
+	help
+	  FIXME
