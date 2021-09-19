@@ -9,44 +9,44 @@
 #
 # We provide this package
 #
-PACKAGES-$(PTXCONF_PYTHON3_OCTOPRINT) += python3-octoprint
+PACKAGES-$(PTXCONF_OCTOPRINT) += octoprint
 
 #
 # Paths and names
 #
-PYTHON3_OCTOPRINT_VERSION	:= 1.6.1
-PYTHON3_OCTOPRINT_MD5		:=
-PYTHON3_OCTOPRINT		:= octoprint-$(PYTHON3_OCTOPRINT_VERSION)
-PYTHON3_OCTOPRINT_SUFFIX	:= tar.gz
-PYTHON3_OCTOPRINT_URL		:= $(call ptx/mirror-pypi, octoprint, $(PYTHON3_OCTOPRINT).$(PYTHON3_OCTOPRINT_SUFFIX))
-PYTHON3_OCTOPRINT_SOURCE	:= $(SRCDIR)/$(PYTHON3_OCTOPRINT).$(PYTHON3_OCTOPRINT_SUFFIX)
-PYTHON3_OCTOPRINT_DIR		:= $(BUILDDIR)/$(PYTHON3_OCTOPRINT)
-PYTHON3_OCTOPRINT_LICENSE	:= unknown
-PYTHON3_OCTOPRINT_LICENSE_FILES	:=
+OCTOPRINT_VERSION	:= 1.6.1
+OCTOPRINT_MD5		:=
+OCTOPRINT		:= octoprint-$(OCTOPRINT_VERSION)
+OCTOPRINT_SUFFIX	:= tar.gz
+OCTOPRINT_URL		:= https://github.com/OctoPrint/OctoPrint/archive/$(OCTOPRINT_VERSION).$(OCTOPRINT_SUFFIX)
+OCTOPRINT_SOURCE	:= $(SRCDIR)/$(OCTOPRINT).$(OCTOPRINT_SUFFIX)
+OCTOPRINT_DIR		:= $(BUILDDIR)/$(OCTOPRINT)
+OCTOPRINT_LICENSE	:= unknown
+OCTOPRINT_LICENSE_FILES	:=
 
 # ----------------------------------------------------------------------------
 # Prepare
 # ----------------------------------------------------------------------------
 
-PYTHON3_OCTOPRINT_CONF_TOOL	:= python3
+OCTOPRINT_CONF_TOOL	:= python3
 
 # ----------------------------------------------------------------------------
 # Target-Install
 # ----------------------------------------------------------------------------
 
-$(STATEDIR)/python3-octoprint.targetinstall:
+$(STATEDIR)/octoprint.targetinstall:
 	@$(call targetinfo)
 
-	@$(call install_init, python3-octoprint)
-	@$(call install_fixup, python3-octoprint,PRIORITY,optional)
-	@$(call install_fixup, python3-octoprint,SECTION,base)
-	@$(call install_fixup, python3-octoprint,AUTHOR,"Oleksij Rempel <Oleksij Rempel <o.rempel@pengutronix.de>>")
-	@$(call install_fixup, python3-octoprint,DESCRIPTION,missing)
+	@$(call install_init, octoprint)
+	@$(call install_fixup, octoprint,PRIORITY,optional)
+	@$(call install_fixup, octoprint,SECTION,base)
+	@$(call install_fixup, octoprint,AUTHOR,"Oleksij Rempel <Oleksij Rempel <o.rempel@pengutronix.de>>")
+	@$(call install_fixup, octoprint,DESCRIPTION,missing)
 
-	@$(call install_glob, python3-octoprint, 0, 0, -, \
+	@$(call install_glob, octoprint, 0, 0, -, \
 		$(PYTHON3_SITEPACKAGES),, *.py)
 
-	@$(call install_finish, python3-octoprint)
+	@$(call install_finish, octoprint)
 
 	@$(call touch)
 
