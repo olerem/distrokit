@@ -9,45 +9,25 @@
 #
 # We provide this package
 #
-PACKAGES-$(PTXCONF_PYTHON3_WHEEL) += python3-wheel
+PACKAGES-$(PTXCONF_HOST_PYTHON3_WHEEL) += host-python3-wheel
 
 #
 # Paths and names
 #
-PYTHON3_WHEEL_VERSION	:= 0.37.0
-PYTHON3_WHEEL_MD5		:=
-PYTHON3_WHEEL		:= wheel-$(PYTHON3_WHEEL_VERSION)
-PYTHON3_WHEEL_SUFFIX	:= tar.gz
-PYTHON3_WHEEL_URL		:= $(call ptx/mirror-pypi, wheel, $(PYTHON3_WHEEL).$(PYTHON3_WHEEL_SUFFIX))
-PYTHON3_WHEEL_SOURCE	:= $(SRCDIR)/$(PYTHON3_WHEEL).$(PYTHON3_WHEEL_SUFFIX)
-PYTHON3_WHEEL_DIR		:= $(BUILDDIR)/$(PYTHON3_WHEEL)
-PYTHON3_WHEEL_LICENSE	:= unknown
-PYTHON3_WHEEL_LICENSE_FILES	:=
+HOST_PYTHON3_WHEEL_VERSION	:= 0.37.0
+HOST_PYTHON3_WHEEL_MD5		:= 79f55b898e6f274f5586bbde39f6fe8e
+HOST_PYTHON3_WHEEL		:= wheel-$(HOST_PYTHON3_WHEEL_VERSION)
+HOST_PYTHON3_WHEEL_SUFFIX	:= tar.gz
+HOST_PYTHON3_WHEEL_URL		:= $(call ptx/mirror-pypi, wheel, $(HOST_PYTHON3_WHEEL).$(HOST_PYTHON3_WHEEL_SUFFIX))
+HOST_PYTHON3_WHEEL_SOURCE	:= $(SRCDIR)/$(HOST_PYTHON3_WHEEL).$(HOST_PYTHON3_WHEEL_SUFFIX)
+HOST_PYTHON3_WHEEL_DIR		:= $(HOST_BUILDDIR)/$(HOST_PYTHON3_WHEEL)
+HOST_PYTHON3_WHEEL_LICENSE	:= unknown
+HOST_PYTHON3_WHEEL_LICENSE_FILES	:=
 
 # ----------------------------------------------------------------------------
 # Prepare
 # ----------------------------------------------------------------------------
 
-PYTHON3_WHEEL_CONF_TOOL	:= python3
-
-# ----------------------------------------------------------------------------
-# Target-Install
-# ----------------------------------------------------------------------------
-
-$(STATEDIR)/python3-wheel.targetinstall:
-	@$(call targetinfo)
-
-	@$(call install_init, python3-wheel)
-	@$(call install_fixup, python3-wheel,PRIORITY,optional)
-	@$(call install_fixup, python3-wheel,SECTION,base)
-	@$(call install_fixup, python3-wheel,AUTHOR,"Oleksij Rempel <o.rempel@pengutronix.de>")
-	@$(call install_fixup, python3-wheel,DESCRIPTION,missing)
-
-	@$(call install_glob, python3-wheel, 0, 0, -, \
-		$(PYTHON3_SITEPACKAGES),, *.py)
-
-	@$(call install_finish, python3-wheel)
-
-	@$(call touch)
+HOST_PYTHON3_WHEEL_CONF_TOOL	:= python3
 
 # vim: syntax=make
