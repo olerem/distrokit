@@ -1,0 +1,74 @@
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Mon, 24 Jul 2023 18:50:21 +0200
+Subject: [PATCH] pyproject.toml: add [project]
+
+Otherwise compile will fail with following error:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 260, in <module>
+    main()
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 256, in main
+    info = make_wheel_in(pyproj_toml, outdir)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 223, in make_wheel_in
+    wb = WheelBuilder.from_ini_path(ini_path, fp)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 84, in from_ini_path
+    ini_info = read_flit_config(ini_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/config.py",
+line 79, in read_flit_config
+    return prep_toml_config(d, path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/config.py",
+line 127, in prep_toml_config
+    raise ConfigError(
+flit_core.config.ConfigError: Neither [project] nor [tool.flit.metadata]
+found in pyproject.toml
+Building wheel from
+/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/build-target/importlib_resources-6.0.0
+
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ pyproject.toml | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index dce944dfc3cd..8bda3181439c 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -2,6 +2,22 @@
+ requires = ["setuptools>=56", "setuptools_scm[toml]>=3.4.1"]
+ build-backend = "setuptools.build_meta"
+ 
++[project]
++name = "importlib_resources"
++version = "6.0.0"
++description = "Read resources from Python packages"
++authors = [{name = "Barry Warsaw", email = "barry@python.org"}]
++readme = "README.rst"
++homepage = "https://github.com/python/importlib_resources"
++classifiers = [
++    "Development Status :: 5 - Production/Stable",
++    "Intended Audience :: Developers",
++    "License :: OSI Approved :: Apache Software License",
++    "Programming Language :: Python :: 3",
++    "Programming Language :: Python :: 3 :: Only"
++]
++documentation = "https://importlib-resources.readthedocs.io/"
++
+ [tool.black]
+ skip-string-normalization = true
+ 

@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_IMPORTLIB_RESOURCES
+    tristate
+    prompt "importlib-resources"
+    select PYTHON3
+
