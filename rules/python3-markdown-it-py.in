@@ -1,0 +1,8 @@
+## SECTION=python3
+
+config PYTHON3_MARKDOWN_IT_PY
+    tristate
+    prompt "markdown-it-py"
+    select PYTHON3
+    select PYTHON3_MDURL
+
