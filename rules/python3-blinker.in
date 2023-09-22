@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_BLINKER
+    tristate
+    prompt "blinker"
+    select PYTHON3
+
