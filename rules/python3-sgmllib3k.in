@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_SGMLLIB3K
+    tristate
+    prompt "sgmllib3k"
+    select PYTHON3
+
