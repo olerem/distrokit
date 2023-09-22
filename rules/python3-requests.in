@@ -1,0 +1,11 @@
+## SECTION=python3
+
+config PYTHON3_REQUESTS
+    tristate
+    prompt "requests"
+    select PYTHON3
+    select PYTHON3_CERTIFI
+    select PYTHON3_CHARSET_NORMALIZER
+    select PYTHON3_IDNA
+    select PYTHON3_URLLIB3
+
