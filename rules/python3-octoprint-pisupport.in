@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_OCTOPRINT_PISUPPORT
+    tristate
+    prompt "OctoPrint-PiSupport"
+    select PYTHON3
+
