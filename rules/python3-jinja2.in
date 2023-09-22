@@ -1,0 +1,8 @@
+## SECTION=python3
+
+config PYTHON3_JINJA2
+    tristate
+    prompt "Jinja2"
+    select PYTHON3
+    select PYTHON3_MARKUPSAFE
+
