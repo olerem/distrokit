@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_WRAPT
+    tristate
+    prompt "wrapt"
+    select PYTHON3
+
