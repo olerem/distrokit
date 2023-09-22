@@ -1,0 +1,11 @@
+## SECTION=python3
+
+config PYTHON3_LIMITS
+    tristate
+    prompt "limits"
+    select PYTHON3
+    select PYTHON3_DEPRECATED
+    select PYTHON3_IMPORTLIB_RESOURCES
+    select PYTHON3_PACKAGING
+    select PYTHON3_TYPING_EXTENSIONS
+
