@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_WATCHDOG
+    tristate
+    prompt "watchdog"
+    select PYTHON3
+
