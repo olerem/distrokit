@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_OCTOPRINT_FILECHECK
+    tristate
+    prompt "OctoPrint-FileCheck"
+    select PYTHON3
+
