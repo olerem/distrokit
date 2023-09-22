@@ -1,0 +1,8 @@
+## SECTION=python3
+
+config PYTHON3_PEP517
+	tristate
+	select PYTHON3
+	prompt "pep517"
+	help
+	  FIXME
