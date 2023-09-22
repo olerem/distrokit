@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_MARKDOWN
+    tristate
+    prompt "markdown"
+    select PYTHON3
+

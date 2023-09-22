@@ -1,0 +1,51 @@
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Fri, 22 Sep 2023 17:28:32 +0200
+Subject: [PATCH] Use makrdown instead of Markdown
+
+Otherwise we will get following error:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File
+"/home/ore/work/dude-work_XUNGI/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 260, in <module>
+    main()
+  File
+"/home/ore/work/dude-work_XUNGI/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 256, in main
+    info = make_wheel_in(pyproj_toml, outdir)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/home/ore/work/dude-work_XUNGI/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 223, in make_wheel_in
+    wb = WheelBuilder.from_ini_path(ini_path, fp)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/home/ore/work/dude-work_XUNGI/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 86, in from_ini_path
+    module = common.Module(ini_info.module, directory)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/home/ore/work/dude-work_XUNGI/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/common.py",
+line 59, in __init__
+    raise ValueError("No file/folder found for module {}".format(name))
+ValueError: No file/folder found for module Markdown
+
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ pyproject.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 1df68854157c..e6de5cac18db 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -4,7 +4,7 @@ requires = ["setuptools>=61.2", "wheel"]
+ build-backend = "setuptools.build_meta"
+ 
+ [project]
+-name = 'Markdown'
++name = 'markdown'
+ dynamic = ['version']
+ description = "Python implementation of John Gruber's Markdown."
+ readme = {file = 'README.md', content-type='text/markdown'}
