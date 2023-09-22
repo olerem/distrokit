@@ -1,0 +1,67 @@
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Mon, 24 Jul 2023 19:34:36 +0200
+Subject: [PATCH] pyproject.toml: add [project] section
+
+Otherwise we will get following error:
+Traceback (most recent call last):
+File "<frozen runpy>", line 198, in _run_module_as_main
+File "<frozen runpy>", line 88, in _run_code
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 260, in <module>
+main()
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 256, in main
+info = make_wheel_in(pyproj_toml, outdir)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 223, in make_wheel_in
+wb = WheelBuilder.from_ini_path(ini_path, fp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 84, in from_ini_path
+ini_info = read_flit_config(ini_path)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/config.py",
+line 79, in read_flit_config
+return prep_toml_config(d, path)
+^^^^^^^^^^^^^^^^^^^^^^^^^
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/config.py",
+line 127, in prep_toml_config
+raise ConfigError(
+flit_core.config.ConfigError: Neither [project] nor [tool.flit.metadata]
+found in pyproject.toml
+
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ pyproject.toml | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 531c8d1689dd..03e31f4e1aae 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,3 +1,18 @@
++[project]
++name = "rich"
++version = "13.4.2"
++description = "Description of the rich package"
++authors = [{name = "Author Name", email = "author@example.com"}]
++readme = "README.md"
++homepage = "https://example.com"
++repository = "https://github.com/user/rich"
++classifiers = [
++    "Programming Language :: Python :: 3",
++    "Programming Language :: Python :: 3.8",
++    "Programming Language :: Python :: 3.9",
++    "Programming Language :: Python :: 3.10",
++]
++
+ [tool.poetry]
+ name = "rich"
+ homepage = "https://github.com/Textualize/rich"

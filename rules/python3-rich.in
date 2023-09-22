@@ -1,0 +1,9 @@
+## SECTION=python3
+
+config PYTHON3_RICH
+    tristate
+    prompt "rich"
+    select PYTHON3
+    select PYTHON3_MARKDOWN_IT_PY
+    select PYTHON3_PYGMENTS
+
