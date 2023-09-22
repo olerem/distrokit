@@ -1,0 +1,9 @@
+## SECTION=python3
+
+config PYTHON3_FLASK_BABEL
+	tristate
+	select PYTHON3
+	select PYTHON3_BABEL
+	prompt "flask-babel"
+	help
+	  FIXME

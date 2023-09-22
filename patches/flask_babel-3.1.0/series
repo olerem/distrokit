@@ -1,0 +1,3 @@
+0001-rename-flask-babel-to-flask_babel.patch
+0001-add-tool.flit.metadata.patch
+0001-add-version-to-__init__.py.patch

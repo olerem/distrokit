@@ -1,0 +1,51 @@
+From 8731b3cad3564a60aa8ea0830b7ed5d785f59271 Mon Sep 17 00:00:00 2001
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Fri, 22 Sep 2023 22:16:58 +0200
+Subject: [PATCH] add [tool.flit.metadata]
+
+otherwise we will get following error:
+Traceback (most recent call last):
+File "<frozen runpy>", line 198, in _run_module_as_main
+File "<frozen runpy>", line 88, in _run_code
+File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py", line 260, in <module>
+main()
+File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py", line 256, in main
+info = make_wheel_in(pyproj_toml, outdir)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py", line 223, in make_wheel_in
+wb = WheelBuilder.from_ini_path(ini_path, fp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py", line 84, in from_ini_path
+ini_info = read_flit_config(ini_path)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/config.py", line 79, in read_flit_config
+return prep_toml_config(d, path)
+^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/config.py", line 127, in prep_toml_config
+raise ConfigError(
+flit_core.config.ConfigError: Neither [project] nor [tool.flit.metadata] found in pyproject.toml
+Building wheel from /home/oleksij/tmp/DistroKit/platform-v8a/build-target/flask_babel-3.1.0
+---
+ pyproject.toml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 9a38d9d1f78e..ede207f4eb3c 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -50,3 +50,12 @@ furo = "^2022.12.7"
+ [build-system]
+ requires = ["poetry-core>=1.0.0"]
+ build-backend = "poetry.core.masonry.api"
++
++[tool.flit.metadata]
++module = "flask_babel"
++author = "Armin Ronacher"
++author-email = "armin@example.com"
++home-page = "https://github.com/python-babel/flask-babel"
++license = "BSD-3-Clause"
++description-file = "README.md"
++requires = ["pytz >=2022.7", "Flask >=2.0", "Babel >=2.12", "Jinja2 >=3.1"]
+-- 
+2.39.2
+

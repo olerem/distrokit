@@ -1,0 +1,46 @@
+From 5b1125ce7c92cc636c19cfebc6e5b5e6433004e8 Mon Sep 17 00:00:00 2001
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Fri, 22 Sep 2023 22:10:16 +0200
+Subject: [PATCH] rename flask-babel to flask_babel
+
+Otherwise we will get following error:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py", line 260, in <module>
+    main()
+  File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py", line 256, in main
+    info = make_wheel_in(pyproj_toml, outdir)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py", line 223, in make_wheel_in
+    wb = WheelBuilder.from_ini_path(ini_path, fp)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py", line 84, in from_ini_path
+    ini_info = read_flit_config(ini_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/config.py", line 79, in read_flit_config
+    return prep_toml_config(d, path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/oleksij/tmp/DistroKit/platform-v8a/sysroot-host/usr/lib/python3/site-packages/flit_core/config.py", line 127, in prep_toml_config
+    raise ConfigError(
+flit_core.config.ConfigError: Neither [project] nor [tool.flit.metadata] found in pyproject.toml
+Building wheel from /home/oleksij/tmp/DistroKit/platform-v8a/build-target/flask_babel-3.1.0
+make: *** [/usr/local/lib/ptxdist-2023.08.0/rules/post/ptxd_make_world_compile.make:20: /home/oleksij/tmp/DistroKit/platform-v8a/state/python3-flask-babel.compile] Error 1
+---
+ pyproject.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 854e5399a993..9a38d9d1f78e 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,5 +1,5 @@
+ [tool.poetry]
+-name = "flask-babel"
++name = "flask_babel"
+ version = "3.1.0"
+ description = "Adds i18n/l10n support for Flask applications."
+ authors = ["Armin Ronacher"]
+-- 
+2.39.2
+

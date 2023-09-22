@@ -1,0 +1,25 @@
+From ed6a3de5d38e3f47d353902ce399197a7f3ff37b Mon Sep 17 00:00:00 2001
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Fri, 22 Sep 2023 22:37:36 +0200
+Subject: [PATCH] add version to __init__.py
+
+otherwise packaging will fail
+---
+ flask_babel/__init__.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/flask_babel/__init__.py b/flask_babel/__init__.py
+index a76bf7c41d4d..184c53030a95 100644
+--- a/flask_babel/__init__.py
++++ b/flask_babel/__init__.py
+@@ -23,6 +23,7 @@ from werkzeug.datastructures import ImmutableDict
+ 
+ from flask_babel.speaklater import LazyString
+ 
++__version__ = "3.1.0"
+ 
+ @dataclass
+ class BabelConfiguration:
+-- 
+2.39.2
+
