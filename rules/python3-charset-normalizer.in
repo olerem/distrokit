@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_CHARSET_NORMALIZER
+    tristate
+    prompt "charset-normalizer"
+    select PYTHON3
+
