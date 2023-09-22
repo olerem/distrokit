@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_FUTURE
+    tristate
+    prompt "future"
+    select PYTHON3
+
