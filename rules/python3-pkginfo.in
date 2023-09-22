@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_PKGINFO
+    tristate
+    prompt "pkginfo"
+    select PYTHON3
+
