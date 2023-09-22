@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_PATHVALIDATE
+    tristate
+    prompt "pathvalidate"
+    select PYTHON3
+
