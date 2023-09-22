@@ -1,0 +1,8 @@
+## SECTION=python3
+
+config PYTHON3_FEEDPARSER
+    tristate
+    prompt "feedparser"
+    select PYTHON3
+    select PYTHON3_SGMLLIB3K
+
