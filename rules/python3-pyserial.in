@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_PYSERIAL
+    tristate
+    prompt "pyserial"
+    select PYTHON3
+
