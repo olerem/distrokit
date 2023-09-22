@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_IDNA
+    tristate
+    prompt "idna"
+    select PYTHON3
+
