@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_CACHELIB
+    tristate
+    prompt "cachelib"
+    select PYTHON3
+
