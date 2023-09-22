@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_PYGMENTS
+    tristate
+    prompt "pygments"
+    select PYTHON3
+
