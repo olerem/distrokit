@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_ITSDANGEROUS
+    tristate
+    prompt "itsdangerous"
+    select PYTHON3
+
