@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_TORNADO
+    tristate
+    prompt "tornado"
+    select PYTHON3
+
