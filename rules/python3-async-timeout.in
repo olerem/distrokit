@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_ASYNC_TIMEOUT
+    tristate
+    prompt "async-timeout"
+    select PYTHON3
+
