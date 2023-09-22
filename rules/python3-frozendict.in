@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_FROZENDICT
+    tristate
+    prompt "frozendict"
+    select PYTHON3
+
