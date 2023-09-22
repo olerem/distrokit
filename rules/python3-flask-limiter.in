@@ -1,0 +1,12 @@
+## SECTION=python3
+
+config PYTHON3_FLASK_LIMITER
+    tristate
+    prompt "Flask-Limiter"
+    select PYTHON3
+    select PYTHON3_FLASK
+    select PYTHON3_LIMITS
+    select PYTHON3_ORDERED_SET
+    select PYTHON3_RICH
+    select PYTHON3_TYPING_EXTENSIONS
+
