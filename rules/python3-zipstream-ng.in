@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_ZIPSTREAM_NG
+    tristate
+    prompt "zipstream-ng"
+    select PYTHON3
+
