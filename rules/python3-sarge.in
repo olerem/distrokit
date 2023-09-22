@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_SARGE
+    tristate
+    prompt "sarge"
+    select PYTHON3
+
