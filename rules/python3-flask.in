@@ -1,0 +1,11 @@
+## SECTION=python3
+
+config PYTHON3_FLASK
+    tristate
+    prompt "flask"
+    select PYTHON3
+    select PYTHON3_CLICK
+    select PYTHON3_ITSDANGEROUS
+    select PYTHON3_JINJA2
+    select PYTHON3_WERKZEUG
+    select PYTHON3_IMPORTLIB_METADATA

@@ -1,0 +1,52 @@
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Mon, 24 Jul 2023 17:40:06 +0200
+Subject: [PATCH] pyproject.toml: rename Flask to flask
+
+otherwise we will get following error:
+target: python3-flask.compile
+-----------------------------
+
+Traceback (most recent call last):
+File "<frozen runpy>", line 198, in _run_module_as_main
+File "<frozen runpy>", line 88, in _run_code
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 260, in <module>
+main()
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 256, in main
+info = make_wheel_in(pyproj_toml, outdir)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 223, in make_wheel_in
+wb = WheelBuilder.from_ini_path(ini_path, fp)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/wheel.py",
+line 86, in from_ini_path
+module = common.Module(ini_info.module, directory)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3/site-packages/flit_core/common.py",
+line 59, in __init__
+raise ValueError("No file/folder found for module {}".format(name))
+ValueError: No file/folder found for module Flask
+
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ pyproject.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 400ed59f85a3..8d04ce31f0f4 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,5 +1,5 @@
+ [project]
+-name = "Flask"
++name = "flask"
+ description = "A simple framework for building complex web applications."
+ readme = "README.rst"
+ license = {text = "BSD-3-Clause"}
