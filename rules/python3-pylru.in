@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_PYLRU
+    tristate
+    prompt "pylru"
+    select PYTHON3
+
