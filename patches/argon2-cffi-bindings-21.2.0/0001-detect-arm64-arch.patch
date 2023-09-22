@@ -1,0 +1,36 @@
+From fd70a2a65f04d9d6e0bebdcfde22091900bdb189 Mon Sep 17 00:00:00 2001
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Sat, 23 Sep 2023 18:07:18 +0200
+Subject: [PATCH 1/2] detect arm64 arch
+
+otherwise it will try to detect host arch and do not support optimizations
+
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ src/_argon2_cffi_bindings/_ffi_build.py | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/_argon2_cffi_bindings/_ffi_build.py b/src/_argon2_cffi_bindings/_ffi_build.py
+index 0d4d0be0ed86..650cc52ea7d5 100644
+--- a/src/_argon2_cffi_bindings/_ffi_build.py
++++ b/src/_argon2_cffi_bindings/_ffi_build.py
+@@ -9,7 +9,7 @@ from cffi import FFI
+ 
+ 
+ use_system_argon2 = os.environ.get("ARGON2_CFFI_USE_SYSTEM", "0") == "1"
+-use_sse2 = os.environ.get("ARGON2_CFFI_USE_SSE2", None)
++use_sse2 = "0"
+ windows = platform.system() == "Windows"
+ 
+ 
+@@ -54,7 +54,6 @@ else:
+     ffi.set_source(
+         "_ffi",
+         "#include <argon2.h>",
+-        extra_compile_args=["-msse2"] if (optimized and not windows) else None,
+         include_dirs=[os.path.join("extras", "libargon2", "include")],
+         sources=[
+             str(lib_base / path)
+-- 
+2.39.2
+

@@ -1,0 +1,35 @@
+From 5145554aa7bd12fb7e83abed274ff9b0b94b7840 Mon Sep 17 00:00:00 2001
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Fri, 22 Sep 2023 22:52:14 +0200
+Subject: [PATCH] make it compatible with flit
+
+---
+ pyproject.toml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index ac877151796f..21fc3c5f2ab3 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -8,14 +8,16 @@ build-backend = "hatchling.build"
+ [tool.hatch.build.targets.wheel]
+ packages = ["src/argon2"]
+ 
++[tool.flit.module]
++name = "src/argon2"
+ 
+ [project]
+ name = "argon2-cffi"
+ description = "Argon2 for Python"
+ authors = [{ name = "Hynek Schlawack", email = "hs@ox.cx" }]
+-dynamic = ["version", "readme"]
+ requires-python = ">=3.7"
+-license = "MIT"
++version = "23.1.0"
++license = { text = "MIT" }
+ keywords = ["password", "hash", "hashing", "security"]
+ classifiers = [
+     "Development Status :: 5 - Production/Stable",
+-- 
+2.39.2
+

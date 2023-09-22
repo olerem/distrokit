@@ -1,0 +1,8 @@
+## SECTION=python3
+
+config PYTHON3_ARGON2_CFFI
+	tristate
+	select PYTHON3
+	prompt "argon2_cffi"
+	help
+	  FIXME
