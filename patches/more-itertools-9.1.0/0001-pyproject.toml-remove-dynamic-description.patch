@@ -1,0 +1,87 @@
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Mon, 24 Jul 2023 19:56:32 +0200
+Subject: [PATCH] pyproject.toml: remove dynamic description
+
+Otherwise we will get error:
+Traceback (most recent call last):
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/build-target/more-itertools-9.1.0/setup.py",
+line 3, in <module>
+    setup()
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/__init__.py",
+line 108, in setup
+    return distutils.core.setup(**attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/_distutils/core.py",
+line 159, in setup
+    dist.parse_config_files()
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/dist.py",
+line 872, in parse_config_files
+    pyprojecttoml.apply_configuration(self, filename,
+ignore_option_errors)
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py",
+line 62, in apply_configuration
+    config = read_configuration(filepath, True, ignore_option_errors,
+dist)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py",
+line 140, in read_configuration
+    return expand_configuration(asdict, root_dir, ignore_option_errors,
+dist)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py",
+line 195, in expand_configuration
+    return _ConfigExpander(config, root_dir, ignore_option_errors,
+dist).expand()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py",
+line 243, in expand
+    self._expand_all_dynamic(dist, package_dir)
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py",
+line 281, in _expand_all_dynamic
+    obtained_dynamic = {
+                       ^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py",
+line 282, in <dictcomp>
+    field: self._obtain(dist, field, package_dir)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py",
+line 331, in _obtain
+    self._ensure_previously_set(dist, field)
+  File
+"/ptx/work/WORK_XUNGI/ore/customers/PTX/DistroKit/platform-v7a/sysroot-host/usr/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py",
+line 307, in _ensure_previously_set
+    raise OptionError(msg)
+distutils.errors.DistutilsOptionError: No configuration found for
+dynamic 'description'.
+Some dynamic fields need to be specified via `tool.setuptools.dynamic`
+others must be specified via the equivalent attribute in `setup.py`.
+
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ pyproject.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 48f470a4a60b..f4c8ef46fddb 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -34,7 +34,7 @@ classifiers = [
+     "Programming Language :: Python :: Implementation :: PyPy",
+     "Topic :: Software Development :: Libraries",
+ ]
+-dynamic = ["version", "description"]
++dynamic = ["version"]
+ 
+ [project.urls]
+ Homepage = "https://github.com/more-itertools/more-itertools"

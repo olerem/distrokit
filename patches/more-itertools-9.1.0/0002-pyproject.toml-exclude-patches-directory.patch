@@ -1,0 +1,41 @@
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Mon, 24 Jul 2023 22:04:19 +0200
+Subject: [PATCH] pyproject.toml: exclude patches directory
+
+Since we have BSP specific patches, which are linked in to the source
+tree, we need to custom discovery configuration by excluding patches
+dir. Otherwise we will get following error:
+error: Multiple top-level packages discovered in a flat-layout:
+['patches', 'more_itertools'].
+
+To avoid accidental inclusion of unwanted files or directories,
+setuptools will not proceed with this build.
+
+If you are trying to create a single distribution with multiple packages
+on purpose, you should not rely on automatic discovery.
+Instead, consider the following options:
+
+1. set up custom discovery (`find` directive with `include` or
+   `exclude`)
+2. use a `src-layout`
+3. explicitly set `py_modules` or `packages` with a list of names
+
+To find more information, look for "package discovery" on setuptools
+docs.
+
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ pyproject.toml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index f4c8ef46fddb..8d080f35b66e 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -46,3 +46,6 @@ name = "more_itertools"
+ line-length = 79
+ target-version = ['py37']
+ skip-string-normalization = true
++
++[tool.setuptools.packages.find]
++exclude = ["patches"]
