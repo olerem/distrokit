@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_ORDERED_SET
+    tristate
+    prompt "ordered-set"
+    select PYTHON3
+
