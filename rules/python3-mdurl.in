@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_MDURL
+    tristate
+    prompt "mdurl"
+    select PYTHON3
+
