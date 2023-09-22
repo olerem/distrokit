@@ -1,0 +1,9 @@
+## SECTION=python3
+
+config PYTHON3_FLASK_ASSETS
+    tristate
+    prompt "Flask-Assets"
+    select PYTHON3
+    select PYTHON3_FLASK
+    select PYTHON3_WEBASSETS
+
