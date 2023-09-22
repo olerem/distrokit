@@ -1,0 +1,7 @@
+## SECTION=python3
+
+config PYTHON3_WHEEL
+    tristate
+    prompt "wheel"
+    select PYTHON3
+
