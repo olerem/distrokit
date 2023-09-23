@@ -1,0 +1,47 @@
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Sun, 24 Sep 2023 12:02:46 +0200
+Subject: [PATCH] [setuptools_scm] Fix Python import path for custom sysroot
+
+The patch corrects the Python import path to include 'site-packages'
+from the custom sysroot environment. It dynamically identifies the base
+path for 'sysroot-host' and appends 'lib/python3/site-packages' to it.
+
+This change resolves the 'ModuleNotFoundError' issue, ensuring that
+custom modules in the sysroot are accessible during the build process.
+
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ setup.py | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 2f06aca847e5..76a04c871958 100644
+--- a/setup.py
++++ b/setup.py
+@@ -23,6 +23,20 @@ def scm_config():
+         )
+ 
+     here = os.path.dirname(os.path.abspath(__file__))
++
++    # Dynamically find the base_path based on the sys.path
++    for path in sys.path:
++        if "sysroot-host" in path:
++            base_path = os.path.join("/", *path.split('/')[:-3])
++            break
++    else:
++        raise ValueError("sysroot-host not found in sys.path")
++
++    target_path = os.path.join(base_path, "usr", "lib", "python3", "site-packages")
++
++    sys.path.insert(0, target_path)
++    print(sys.path)  # For debugging
++
+     src = os.path.join(here, "src")
+     egg_info = os.path.join(src, "setuptools_scm.egg-info")
+     has_entrypoints = os.path.isdir(egg_info)
+@@ -63,4 +77,4 @@ def scm_config():
+ 
+ 
+ if __name__ == "__main__":
+-    setuptools.setup(setup_requires=["setuptools>=45", "tomli"], **scm_config())
++    setuptools.setup(**scm_config())
