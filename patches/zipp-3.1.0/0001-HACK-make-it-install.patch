@@ -1,0 +1,20 @@
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+Date: Sun, 24 Sep 2023 13:52:18 +0200
+Subject: [PATCH] HACK: make it install
+
+---
+ setup.cfg | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/setup.cfg b/setup.cfg
+index 148267ce8df1..5c72e56a3a39 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -19,7 +19,6 @@ packages = find:
+ include_package_data = true
+ python_requires = >=3.6
+ install_requires = 
+-setup_requires = setuptools_scm[toml] >= 3.4.1
+ 
+ [options.extras_require]
+ testing = 
